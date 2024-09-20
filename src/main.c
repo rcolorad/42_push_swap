@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcolorad <rcolorad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 20:37:42 by rcolorad          #+#    #+#             */
-/*   Updated: 2024/09/20 01:02:53 by rcolorad         ###   ########.fr       */
+/*   Created: 2024/09/20 01:30:09 by rcolorad          #+#    #+#             */
+/*   Updated: 2024/09/20 02:05:37 by rcolorad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    rotate(t_stack **stack)
+int	main(int argc, char **argv)
 {
-    if (*stack == NULL)
-        return ;
-    *stack = (*stack)->next;
-}
-
-void    ra(t_stack **stack_a)
-{
-    rotate(stack_a);
-    write(1, "ra\n", 3);
-}
-
-void    rb(t_stack **stack_b)
-{
-    rotate(stack_b);
-    write(1, "rb\n", 3);
-}
-
-void    rr(t_stack **stack_a, t_stack **stack_b)
-{
-    rotate(stack_a);
-    rotate(stack_b);
-    write(1, "rr\n", 3);   
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	
+	stack_a = NULL;
+	stack_b = NULL;	
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (1);
+	if (parse(argc, argv, &stack_a))
+		sort_stack(&stack_a, &stack_b);
+	free_stack();
+	return (0);
 }
